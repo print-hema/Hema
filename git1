@@ -1,0 +1,249 @@
+labuser@labuser-virtual-machine:~$ git --version
+git version 2.34.1
+labuser@labuser-virtual-machine:~$ mkdir test1
+mkdir: cannot create directory ‘test1’: File exists
+labuser@labuser-virtual-machine:~$ mkdir test3
+labuser@labuser-virtual-machine:~$ cd test3
+labuser@labuser-virtual-machine:~/test3$  git init
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint: 
+hint: 	git config --global init.defaultBranch <name>
+hint: 
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint: 
+hint: 	git branch -m <name>
+Initialized empty Git repository in /home/labuser/test3/.git/
+labuser@labuser-virtual-machine:~/test3$ git init
+Reinitialized existing Git repository in /home/labuser/test3/.git/
+labuser@labuser-virtual-machine:~/test3$ echo "test3" > test3
+labuser@labuser-virtual-machine:~/test3$ git status
+On branch master
+
+No commits yet
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	test3
+
+nothing added to commit but untracked files present (use "git add" to track)
+labuser@labuser-virtual-machine:~/test3$  git add .
+labuser@labuser-virtual-machine:~/test3$ git commit -m "change3"
+[master (root-commit) 8164706] change3
+ 1 file changed, 1 insertion(+)
+ create mode 100644 test3
+labuser@labuser-virtual-machine:~/test3$ git remote add origin https://github.com/print-hema/Hema.git
+labuser@labuser-virtual-machine:~/test3$ git remote -v
+origin	https://github.com/print-hema/Hema.git (fetch)
+origin	https://github.com/print-hema/Hema.git (push)
+labuser@labuser-virtual-machine:~/test3$ git push -u origin master
+Username for 'https://github.com': print-hema
+Password for 'https://print-hema@github.com': 
+Enumerating objects: 3, done.
+Counting objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 222 bytes | 222.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/print-hema/Hema.git
+ * [new branch]      master -> master
+Branch 'master' set up to track remote branch 'master' from 'origin'.
+labuser@labuser-virtual-machine:~/test3$ ls 
+test3
+labuser@labuser-virtual-machine:~/test3$ ls -li
+total 4
+6160998 -rw-rw-r-- 1 labuser labuser 6 Dec 14 01:28 test3
+labuser@labuser-virtual-machine:~/test3$ ls
+test3
+labuser@labuser-virtual-machine:~/test3$ nano test3
+labuser@labuser-virtual-machine:~/test3$ git add .
+labuser@labuser-virtual-machine:~/test3$ git commit -m "change2"
+[master 0efbf41] change2
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+labuser@labuser-virtual-machine:~/test3$ git push -u origin master
+Username for 'https://github.com': print-hema
+Password for 'https://print-hema@github.com': 
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Writing objects: 100% (3/3), 251 bytes | 251.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/print-hema/Hema.git
+   8164706..0efbf41  master -> master
+Branch 'master' set up to track remote branch 'master' from 'origin'.
+labuser@labuser-virtual-machine:~/test3$ git branch
+* master
+labuser@labuser-virtual-machine:~/test3$ git branch devops1
+labuser@labuser-virtual-machine:~/test3$ git checkout devops1
+Switched to branch 'devops1'
+labuser@labuser-virtual-machine:~/test3$ git branch
+* devops1
+  master
+labuser@labuser-virtual-machine:~/test3$ echo "test4">test4
+labuser@labuser-virtual-machine:~/test3$ echo "test5">test5
+labuser@labuser-virtual-machine:~/test3$ ls
+test3  test4  test5
+labuser@labuser-virtual-machine:~/test3$ ls -li
+total 12
+6160998 -rw-rw-r-- 1 labuser labuser 6 Dec 14 01:40 test3
+6160996 -rw-rw-r-- 1 labuser labuser 6 Dec 14 01:45 test4
+6162153 -rw-rw-r-- 1 labuser labuser 6 Dec 14 01:45 test5
+labuser@labuser-virtual-machine:~/test3$ git add .
+labuser@labuser-virtual-machine:~/test3$ git commit -m "change4"
+[devops1 248c76e] change4
+ 2 files changed, 2 insertions(+)
+ create mode 100644 test4
+ create mode 100644 test5
+labuser@labuser-virtual-machine:~/test3$ git push -u origin devops1
+Username for 'https://github.com': print-hema
+Password for 'https://print-hema@github.com': 
+Enumerating objects: 4, done.
+Counting objects: 100% (4/4), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 280 bytes | 280.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+remote: 
+remote: Create a pull request for 'devops1' on GitHub by visiting:
+remote:      https://github.com/print-hema/Hema/pull/new/devops1
+remote: 
+To https://github.com/print-hema/Hema.git
+ * [new branch]      devops1 -> devops1
+Branch 'devops1' set up to track remote branch 'devops1' from 'origin'.
+labuser@labuser-virtual-machine:~/test3$ git branch
+* devops1
+  master
+labuser@labuser-virtual-machine:~/test3$ git checkout master
+Switched to branch 'master'
+Your branch is up to date with 'origin/master'.
+labuser@labuser-virtual-machine:~/test3$ git merge devops1
+Updating 0efbf41..248c76e
+Fast-forward
+ test4 | 1 +
+ test5 | 1 +
+ 2 files changed, 2 insertions(+)
+ create mode 100644 test4
+ create mode 100644 test5
+labuser@labuser-virtual-machine:~/test3$ ls
+test3  test4  test5
+labuser@labuser-virtual-machine:~/test3$ ls -li
+total 12
+6160998 -rw-rw-r-- 1 labuser labuser 6 Dec 14 01:40 test3
+6162153 -rw-rw-r-- 1 labuser labuser 6 Dec 14 01:50 test4
+6162163 -rw-rw-r-- 1 labuser labuser 6 Dec 14 01:50 test5
+labuser@labuser-virtual-machine:~/test3$ git log -p
+commit 248c76e943dfdc8482dc77902b9f57e64e48809e (HEAD -> master, origin/devops1, devops1)
+Author: David Robichaud <david.robichaud@skillsoft.com>
+Date:   Sat Dec 14 01:47:04 2024 -0500
+
+    change4
+
+diff --git a/test4 b/test4
+new file mode 100644
+index 0000000..d234c5e
+--- /dev/null
++++ b/test4
+@@ -0,0 +1 @@
++test4
+diff --git a/test5 b/test5
+new file mode 100644
+index 0000000..4f346f1
+--- /dev/null
++++ b/test5
+@@ -0,0 +1 @@
++test5
+
+commit 0efbf41a39f4663af124e2a115b008161af453b2 (origin/master)
+Author: David Robichaud <david.robichaud@skillsoft.com>
+Date:   Sat Dec 14 01:41:07 2024 -0500
+
+    change2
+
+diff --git a/test3 b/test3
+index df6b0d2..d234c5e 100644
+--- a/test3
++++ b/test3
+@@ -1 +1 @@
+-test3
++test4
+
+commit 816470627d42837ea2959ba2e1d3e52b23c64e0e
+Author: David Robichaud <david.robichaud@skillsoft.com>
+Date:   Sat Dec 14 01:30:07 2024 -0500
+
+    change3
+
+diff --git a/test3 b/test3
+new file mode 100644
+index 0000000..df6b0d2
+--- /dev/null
++++ b/test3
+@@ -0,0 +1 @@
++test3
+labuser@labuser-virtual-machine:~/test3$ git log --oneline
+248c76e (HEAD -> master, origin/devops1, devops1) change4
+0efbf41 (origin/master) change2
+8164706 change3
+labuser@labuser-virtual-machine:~/test3$ cd 
+labuser@labuser-virtual-machine:~$ git clone https://github.com/print-hema/Hema.git
+Cloning into 'Hema'...
+remote: Enumerating objects: 9, done.
+remote: Counting objects: 100% (9/9), done.
+remote: Compressing objects: 100% (4/4), done.
+remote: Total 9 (delta 1), reused 8 (delta 0), pack-reused 0 (from 0)
+Receiving objects: 100% (9/9), done.
+Resolving deltas: 100% (1/1), done.
+labuser@labuser-virtual-machine:~$ ls
+Desktop    Downloads    Hema   Pictures  repos  Templates  test2  tlkajdfklja
+Documents  execute.yml  Music  Public    snap   test1      test3  Videos
+labuser@labuser-virtual-machine:~$ cd Hema
+labuser@labuser-virtual-machine:~/Hema$ ls
+test3
+labuser@labuser-virtual-machine:~/Hema$ cd
+labuser@labuser-virtual-machine:~$ mkdir Dev1
+labuser@labuser-virtual-machine:~$ cd Dev1
+labuser@labuser-virtual-machine:~/Dev1$ git pull https://github.com/print-hema/Hema.git
+fatal: not a git repository (or any of the parent directories): .git
+labuser@labuser-virtual-machine:~/Dev1$ git init
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint: 
+hint: 	git config --global init.defaultBranch <name>
+hint: 
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint: 
+hint: 	git branch -m <name>
+Initialized empty Git repository in /home/labuser/Dev1/.git/
+labuser@labuser-virtual-machine:~/Dev1$ git remote -v
+labuser@labuser-virtual-machine:~/Dev1$ git pull https://github.com/print-hema/Hema.git
+remote: Enumerating objects: 6, done.
+remote: Counting objects: 100% (6/6), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 6 (delta 1), reused 5 (delta 0), pack-reused 0 (from 0)
+Unpacking objects: 100% (6/6), 382 bytes | 191.00 KiB/s, done.
+From https://github.com/print-hema/Hema
+ * branch            HEAD       -> FETCH_HEAD
+labuser@labuser-virtual-machine:~/Dev1$ git branch
+* master
+labuser@labuser-virtual-machine:~/Dev1$ ls
+test3
+labuser@labuser-virtual-machine:~/Dev1$ ls -li
+total 4
+6162250 -rw-rw-r-- 1 labuser labuser 6 Dec 14 01:58 test3
+labuser@labuser-virtual-machine:~/Dev1$ git branch m1
+labuser@labuser-virtual-machine:~/Dev1$ git checkout m1
+Switched to branch 'm1'
+labuser@labuser-virtual-machine:~/Dev1$ git branch
+* m1
+  master
+labuser@labuser-virtual-machine:~/Dev1$ echo "apple1">fruit
+labuser@labuser-virtual-machine:~/Dev1$ ls
+fruit  test3
+labuser@labuser-virtual-machine:~/Dev1$ git checkout master
+Switched to branch 'master'
+labuser@labuser-virtual-machine:~/Dev1$ ls
+fruit  test3
+labuser@labuser-virtual-machine:~/Dev1$ git rebase master
+Current branch master is up to date.
+
